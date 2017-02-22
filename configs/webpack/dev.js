@@ -1,14 +1,15 @@
 const merge = require('webpack-merge');
-const coreConfig = require('./core.js');
+const baseConfig = require('./base.js');
 
-module.exports = merge.smart({}, coreConfig, {
+module.exports = merge.smart({}, baseConfig, {
   devtool: 'source-map',
 
   output: {
     // used for file loader
     publicPath: 'http://localhost:8080',
-    filename: '[name].js',
+    filename: '[name].bundle.js',
     chunkFilename: '[id].chunk.js',
+    sourceMapFilename: '[name].map',
   },
 
   devServer: {

@@ -1,30 +1,27 @@
-import path from 'path';
-import { run } from 'runjs';
+const path = require('path');
+const run = require('runjs').run;
+const testBuild = require('./test').testBuild;
 
 const cwd = path.resolve(__dirname);
 
-export default {
-  build,
-  clean,
+module.exports = {
   lint,
   release,
+  test,
 };
 
-function build() {
-  clean();
-  run('babel src --out-dir ./dist', { cwd });
-}
-
-function clean() {
-  run('rimraf dist', { cwd });
-}
-
 function lint() {
-  run('eslint src && eslint configs', { cwd });
+  run('eslint configs', { cwd });
+  run('eslint helpers', { cwd });
+  run('eslint scripts', { cwd });
 }
 
 function release() {
   lint();
-  build();
+  test();
   run('npm publish', { cwd });
+}
+
+function test() {
+  testBuild();
 }

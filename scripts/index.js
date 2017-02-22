@@ -1,7 +1,8 @@
-import path from 'path';
-import { run } from 'runjs';
+const path = require('path');
+const run = require('runjs').run;
+const helpers = require('../helpers');
 
-export default {
+module.exports = {
   clean,
   build,
   start,
@@ -15,7 +16,8 @@ function build() {
 }
 
 function clean() {
-  run('rimraf ../../../dist', {
+  const distDir = helpers.fromRootDir('dist');
+  run(`rimraf ${distDir}`, {
     cwd: path.resolve(__dirname),
   });
 }
