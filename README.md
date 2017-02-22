@@ -12,20 +12,19 @@ npm install react-application-base
 
 ### Project Structure
 
-In order to provide the best out of the box experience, this library makes some assumptions about your project structure. You should include the following files and folders in your project root.
+In order to provide the best out of the box experience, this library makes some assumptions about your project's structure. You must include the following files and folders in your project's root directory.
 
 ```
-my-project-root
-  -package.json
-  -src/
-    -index.js
-    -vendor.js
-    -index.html
+-package.json
+-src/
+  -index.js
+  -vendor.js
+  -index.html
 ```
 
 ### Linting
 
-Create a file in your project root called `.eslintrc.js`. Add the following line.
+For development, an eslint configuration is included. Create a file in your project's root directory called `.eslintrc.js` with the following contents.
 
 ```javascript
 module.exports = require('react-application-base/configs/eslint');
@@ -33,13 +32,14 @@ module.exports = require('react-application-base/configs/eslint');
 
 ### Scripts
 
-The core interface for this library is a set of exported build scripts. The following scripts are included:
+This library includes a set of common scripts for building, testing, etc. The following scripts are exported:
+
 * build -- builds a production bundle and output to a `dist` folder
 * lint -- lints your code using eslint and reports errors to console
 * start -- runs your a development server at `http://localhost:8080` and live-reloads on source file changes
 * test -- runs a test server at `http://localhost:5000` and live-reloads test file changes
 
-Scripts are run using [runjs](https://github.com/pawelgalazka/runjs), and you can access any of them by creating a runfile at the root of your package. Create a file called `runfile.js` with the following contents.
+Scripts can be run using [runjs](https://github.com/pawelgalazka/runjs), an included dependency. You can use any of the exported scripts by creating a special *runfile* at your project's root. Create a file called `runfile.js` with the following contents.
 
 ```javascript
 module.exports = require('react-application-base').scripts;
